@@ -1,0 +1,34 @@
+buildscript {
+    //전역변수 선언
+    ext {
+        springBootVersion = '2.1.9.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+//플러그인 의존성 적용 여부
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'       //SpringBoot 의존성 관리 플러그인
+
+group 'com.sbtest'
+version '1.0-SNAPSHOT'
+sourceCompatibility = 1.8
+
+//의존성(라이브러리) 원격 저장소 선택
+repositories {
+    mavenCentral()      //mavenCentral(과거)
+    jcenter()           //요즘(?) 유행되는 저장소. jcenter 업로드 시 mavenCentral 자동 업로드
+}
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-web')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}
